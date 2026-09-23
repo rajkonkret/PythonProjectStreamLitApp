@@ -46,3 +46,4 @@ st.markdown(
 
 st.markdown("---")
 st.markdown("[Kliknij](https://naukapythona.pl)")
+
