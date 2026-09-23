@@ -24,6 +24,7 @@
 # st.columns
 
 import streamlit as st
+import re
 
 st.set_page_config(page_title="Panel Kursanta", page_icon="")
 
@@ -34,6 +35,12 @@ with st.sidebar:
         ["Python", "Java", 'SQL'],
         label_visibility="collapsed"
         # label_visibility="hidden"
+    )
+
+    kurs_radiobutton = st.radio(
+        "Wybierz kurs",
+        ["Python", "Java", 'SQL'],
+        label_visibility="collapsed"
     )
 
 st.title("Panel Kursanta")
@@ -55,10 +62,14 @@ with st.form("formularz_kursanta"):
     submitted = st.form_submit_button("Wyślij")
 
 if submitted:
-    st.success("Dane zostały zapisane!")
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        st.error("Podaj poprawny adres email")
+    else:
+        st.success("Dane zostały zapisane!")
 
-    st.subheader("Dane kursanta")
-    st.write(f"**Imię:** {imie}")
-    st.write(f"**E-mail:** {email}")
-    st.write(f"**Kurs:** {kurs}")
-    st.write(f"**Poziom:** {poziom}")
+        st.subheader("Dane kursanta")
+        st.write(f"**Imię:** {imie}")
+        st.write(f"**E-mail:** {email}")
+        st.write(f"**Kurs:** {kurs}")
+        st.write(f"**Kurs (radio):** {kurs_radiobutton}")
+        st.write(f"**Poziom:** {poziom}")
