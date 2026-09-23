@@ -24,3 +24,13 @@ experience = st.slider(
 )
 
 st.write("Lata:", experience)
+
+language = st.selectbox(
+    "Wybierz język programowania",
+    [
+        "Python",
+        "Java",
+        "C++",
+        "JavaScript",
+     ]
+)
