@@ -23,11 +23,30 @@ with left:
 with right:
     st.write("Prawa kolumna")
 
-category  =st.sidebar.selectbox(
-    "Kategoria",
-    [
-        "Python",
-        "SQL",
-        "Python",
-    ]
-)
+# category  =st.sidebar.selectbox(
+#     "Kategoria",
+#     [
+#         "Python",
+#         "SQL",
+#         "Python",
+#     ]
+# )
+
+with st.sidebar:
+
+    st.header("Filtry")
+
+    category  =st.sidebar.selectbox(
+        "Kategoria",
+        [
+            "Python",
+            "SQL",
+            "Python",
+        ]
+    )
+
+with st.expander("Więcej informacji"):
+
+    st.write(
+        "Tutaj możemy umięscić dodatkową treść"
+    )
