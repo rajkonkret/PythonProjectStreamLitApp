@@ -34,3 +34,15 @@ language = st.selectbox(
         "JavaScript",
      ]
 )
+
+st.markdown("""
+<style>
+/* Kolor tekstu checkbox */
+div[data-testid]="stCheckbox"] label p {
+    color: #1E88E5 !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+remote = st.checkbox(
+    "Interesuje mnie praca zdalna"
+)
