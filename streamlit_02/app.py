@@ -38,11 +38,17 @@ language = st.selectbox(
 st.markdown("""
 <style>
 /* Kolor tekstu checkbox */
-div[data-testid]="stCheckbox"] label p {
+div[data-testid="stCheckbox"] label p {
     color: #1E88E5 !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 remote = st.checkbox(
     "Interesuje mnie praca zdalna"
 )
+
+st.write(remote)
+
+if st.button("Pokaż podsumowanie"):
+    st.write("Wybrane język:", language)
