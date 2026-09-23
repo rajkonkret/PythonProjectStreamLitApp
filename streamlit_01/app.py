@@ -6,3 +6,9 @@ import streamlit as st
 st.title("Moja pierwsza aplikacja Streamlit")
 
 st.write("Witaj w aplikacji napisanej w Pythonie")
+
+st.header("O Aplikacji")
+
+st.write(
+    "Streamlit pozwala tworzyć aplikację webowe "
+    "bez pisania HTML, CSS, JS.")
