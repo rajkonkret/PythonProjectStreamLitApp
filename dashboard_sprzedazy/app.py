@@ -40,6 +40,30 @@ except ValueError as exc:
 if invalid:
     st.warning(f"Pominięto {invalid} niepoprawnych wierszy")
 
-if df.empty():
+if df.empty:
     st.error("Brak danych")
     st.stop()
+
+# nowy plik otrzymuje nowe filtry
+identity = hashlib.sha256(uploaded.getvalue()).hexdigest()[:12] if uploaded is not None else 'demo'
+
+with st.sidebar:
+    categories = sorted(df["kategoria"].unique())
+    chosen = st.multiselect(
+        "Kategorie produktów",
+        categories,
+        default=categories,
+        key=f"categories_{identity}"
+    )
+
+    date_min, date_max = df['data'].min().date(), df['data'].max().date()
+
+    dates = st.date_input(
+        "Zakres dat",
+        value=(date_min, date_max),
+        min_value=date_min,
+        max_value=date_max,
+        key=f"dates_{identity}"
+    )
+
+    st.caption("Wszystkie kwoty w PLN")
