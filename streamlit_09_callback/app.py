@@ -2,6 +2,15 @@ import streamlit as st
 
 st.set_page_config(page_title="Streamlit: Problem Sesji", layout="wide")
 
+
+def inc_counter():
+    st.session_state.dobry_licznik += 1
+
+
+def set_step(step_number):
+    st.session_state.krok = step_number
+
+
 st.title("Problem przeładowania skryptu (rerun)")
 st.write("""
 W Streamlit za kazdyą zmianą plik jest wykonywany od początku""")
