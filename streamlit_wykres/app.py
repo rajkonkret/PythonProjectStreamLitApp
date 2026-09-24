@@ -48,3 +48,23 @@ df = pd.DataFrame({
         200
     )
 })
+
+st.sidebar.header("Filtry")
+
+region = st.sidebar.selectbox(
+    "Region:",
+
+    [
+        "Wszystkie",
+        "Warszawa",
+        "Kraków",
+        "Gdańsk",
+        "Wrocław"
+    ]
+)
+
+produkty = st.sidebar.multiselect(
+    "Produkty:",
+    options=df['produkt'].unique(),
+    default=df['produkt'].unique()
+)
