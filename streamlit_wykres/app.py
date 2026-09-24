@@ -9,3 +9,42 @@ st.set_page_config(
 
 st.title("Dashboard")
 
+np.random.seed(42)
+
+df = pd.DataFrame({
+    "data": pd.date_range(
+        "2026-01-01",
+        periods=200
+    ),
+
+    "region": np.random.choice(
+        [
+            "Warszawa",
+            "Kraków",
+            "Gdańsk",
+            "Wrocław"
+        ],
+        200
+    ),
+
+    "produkt": np.random.choice(
+        [
+            "Laptop",
+            "Telefon",
+            "Tablet"
+        ],
+        200
+    ),
+
+    "sprzedaz": np.random.randint(
+        1000,
+        15000,
+        200
+    ),
+
+    "koszty": np.random.randint(
+        500,
+        10000,
+        200
+    )
+})
