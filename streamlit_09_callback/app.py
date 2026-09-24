@@ -71,9 +71,11 @@ with st.expander("Kliknij aby rozwinąć"):
             st.session_state.krok = 1
 
         if st.session_state.krok == 1:
-            if st.button("Przejdz do kroku 2"):
-                st.session_state.krok = 2
-                st.rerun()
+            # if st.button("Przejdz do kroku 2"):
+            #     st.session_state.krok = 2
+            #     st.rerun()
+            if st.session_state.krok == 1:
+                st.button("Przejdz do kroku 2", on_click=set_step, args=(2,))
 
         if st.session_state.krok == 2:
             imie_poprawne = st.text_input("Twoje imię (w sesji):", key="user_name")
