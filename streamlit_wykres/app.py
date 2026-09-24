@@ -124,3 +124,35 @@ with col3:
 
 
 st.divider()
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.subheader("📈 Sprzedaż w czasie")
+
+    sprzedaz_czas = (
+        filtered_df
+        .groupby("data")["sprzedaz"]
+        .sum()
+    )
+
+    st.line_chart(
+        sprzedaz_czas
+    )
+
+
+
+with col2:
+
+    st.subheader("Sprzedaż według produktu")
+
+    sprzedaz_produkty = (
+        filtered_df
+        .groupby("produkt")["sprzedaz"]
+        .sum()
+    )
+
+    st.bar_chart(
+        sprzedaz_produkty
+    )
