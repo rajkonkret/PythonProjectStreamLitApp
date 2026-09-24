@@ -82,3 +82,10 @@ revenue = filtered['wartosc_sprzedazy'].sum()
 units = int(filtered['liczba_sztuk'].sum())
 ranking = filtered.groupby('produkt')['liczba_sztuk'].sum().sort_values(ascending=False)
 bestsellers = ranking[ranking == ranking.max()]
+
+a, b, c = st.columns(3)
+a.metric("Wartość sprzedaży", f"{revenue:,.2f}".replace(",", " ").replace(".", " "))
+b.metric("Sprzedane sztuki", f"{units:,.2f}".replace(",", " "))
+c.metric("Bestseller", str(bestsellers.index[0]))
+if len(bestsellers) > 1:
+    st.caption("Remis: " + ', '.join(bestsellers.index))
