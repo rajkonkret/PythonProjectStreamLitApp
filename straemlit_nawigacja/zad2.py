@@ -31,3 +31,9 @@ def strona_ustawien():
 
     if st.button("Zapisz ustawienai"):
         st.success(F"Zapisano! Wybrana waluta: {waluta}")
+
+
+if "licznik_odwiedzin" not in st.session_state:
+    st.session_state.licznik_odwiedzin = 1
+else:
+    st.session_state.licznik_odwiedzin += 1
