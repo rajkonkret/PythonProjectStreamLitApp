@@ -68,3 +68,29 @@ produkty = st.sidebar.multiselect(
     options=df['produkt'].unique(),
     default=df['produkt'].unique()
 )
+
+minimalna_sprzedaz = st.sidebar.slider(
+    "Minimalna sprzedaż:",
+    min_value=0,
+    max_value=15000,
+    value=0,
+    step=500
+)
+
+filtered_df = df.copy()
+
+
+if region != "Wszystkie":
+    filtered_df = filtered_df[
+        filtered_df["region"] == region
+    ]
+
+
+filtered_df = filtered_df[
+    filtered_df["produkt"].isin(produkty)
+]
+
+
+filtered_df = filtered_df[
+    filtered_df["sprzedaz"] >= minimalna_sprzedaz
+]
