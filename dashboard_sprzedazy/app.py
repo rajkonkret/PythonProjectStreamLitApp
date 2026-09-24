@@ -19,3 +19,8 @@ with st.sidebar:
         type=['csv']
     ) if source == "Własny plik CSV" else None
     sample = Path(__file__).parent / 'sprzedaz_przyklad.csv'
+    st.download_button(
+        "Pobierz przykłądowy csv",
+        sample.read_bytes(),
+        "sprzedaz_przyklad.csv",
+        "text/csv")
