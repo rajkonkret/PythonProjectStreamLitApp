@@ -9,6 +9,7 @@ st.title("@st.cache_data")
 
 st.divider()
 
+
 def pobierz_dane_bez_cache(kategoria: str):
     time.sleep(2)
     np.random.seed(42)
@@ -20,6 +21,7 @@ def pobierz_dane_bez_cache(kategoria: str):
         }
     )
     return df
+
 
 @st.cache_data
 def pobierz_dane_z_cache(kategoria: str):
@@ -33,3 +35,16 @@ def pobierz_dane_z_cache(kategoria: str):
         }
     )
     return df
+
+
+st.subheader("Zmiana na na stronie wymusza rerun")
+col_ctrl1, col_ctrl2 = st.columns([1, 2])
+
+with col_ctrl1:
+    wybrana_kategoria = st.selectbox("Kategorie:", ["Elektronika", "Książki", "AGD"])
+
+with col_ctrl2:
+    suwak = st.slider("Przesuń", 0, 100, 2)
+
+st.divider()
+
