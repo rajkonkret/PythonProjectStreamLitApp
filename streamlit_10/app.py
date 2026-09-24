@@ -22,8 +22,8 @@ def pobierz_dane_bez_cache(kategoria: str):
     )
     return df
 
-
-@st.cache_data
+# cahce odświeżany co 10 minut
+@st.cache_data(ttl=600)
 def pobierz_dane_z_cache(kategoria: str):
     time.sleep(2)
     np.random.seed(42)
@@ -59,7 +59,8 @@ with col_left:
         dane_bez = pobierz_dane_bez_cache(wybrana_kategoria)
     czas_bez = time.time() - start_time
 
-    st.metric(label="Czas wykonania zapytania:", value=f"{czas_bez:.2f}", delta=f"{czas_bez:.2f}", delta_color="inverse")
+    st.metric(label="Czas wykonania zapytania:", value=f"{czas_bez:.2f}", delta=f"{czas_bez:.2f}",
+              delta_color="inverse")
     st.dataframe(dane_bez, hide_index=True)
     st.error("Kazde zapytanie 2s")
 
@@ -75,3 +76,13 @@ with col_right:
     st.metric(label="Czas wykonania zapytania:", value=f"{czas_z:.2f}", delta=f"{czas_z:.2f}", delta_color="inverse")
     st.dataframe(dane_z, hide_index=True)
     st.success("Dane wczytane z cache")
+
+st.divider()
+
+st.subheader("Czyszczenie Cache")
+st.write("Jeśli zmienią się dane należy je ponownie ząładować do cache")
+
+if st.button("Wyczyść cache"):
+    pobierz_dane_z_cache.clear()
+    st.toast("Wyczyszczono")
+    st.rerun()
