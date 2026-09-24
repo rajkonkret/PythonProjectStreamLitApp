@@ -157,9 +157,9 @@ with col2:
         sprzedaz_produkty
     )
 
-    st.subheader("📋 Dane po zastosowaniu filtrów")
-    
-    st.dataframe(
-        filtered_df,
-        use_container_width=True
-    )
+st.subheader("📋 Dane po zastosowaniu filtrów")
+
+st.dataframe(
+    filtered_df,
+    use_container_width=True
+)
