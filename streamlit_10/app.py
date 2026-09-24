@@ -62,3 +62,16 @@ with col_left:
     st.metric(label="Czas wykonania zapytania:", value=f"{czas_bez:.2f}", delta=f"{czas_bez:.2f}", delta_color="inverse")
     st.dataframe(dane_bez, hide_index=True)
     st.error("Kazde zapytanie 2s")
+
+with col_right:
+    st.subheader("z Cache (@st.cache_data)")
+    st.caption("Pierwsze 2s, kolejne bliskie 0s")
+
+    start_time = time.time()
+    with st.spinner("Pobieranie danych (z cache)"):
+        dane_z = pobierz_dane_z_cache(wybrana_kategoria)
+    czas_z = time.time() - start_time
+
+    st.metric(label="Czas wykonania zapytania:", value=f"{czas_z:.2f}", delta=f"{czas_z:.2f}", delta_color="inverse")
+    st.dataframe(dane_z, hide_index=True)
+    st.success("Dane wczytane z cache")
