@@ -70,3 +70,12 @@ with st.expander("Kliknij aby rozwinąć"):
             if st.button("Zapisz i zakończ"):
                 st.session_state.krok = 3
                 st.rerun()
+
+        if "user_name" not in st.session_state:
+            st.session_state.user_name = ""
+
+        if st.session_state.krok == 3:
+            st.write(f"Cześć **{st.session_state.user_name}**!")
+            if st.button("Zacznij od nowa"):
+                st.session_state.krok = 1
+                st.rerun()
