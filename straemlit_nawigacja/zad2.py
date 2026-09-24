@@ -38,11 +38,21 @@ if "licznik_odwiedzin" not in st.session_state:
 else:
     st.session_state.licznik_odwiedzin += 1
 
-menu = [
-    st.Page(strona_glowna, title="Start", icon="", default=True),
-    st.Page(strona_raport, title="Raport", icon="", url_path="raport"),
-    st.Page(strona_ustawien, title="Ustawienia", icon=""),
-]
+# menu = [
+#     st.Page(strona_glowna, title="Start", icon="", default=True),
+#     st.Page(strona_raport, title="Raport", icon="", url_path="raport"),
+#     st.Page(strona_ustawien, title="Ustawienia", icon=""),
+# ]
+
+menu = {
+    "Ogólne":
+        [st.Page(strona_glowna, title="Start", icon="", default=True)],
+    "Analityka":
+        [st.Page(strona_raport, title="Raport", icon="", url_path="raport")],
+
+    "Administracja": [st.Page(strona_ustawien, title="Ustawienia", icon="")],
+
+}
 
 navi = st.navigation(menu)
 navi.run()
