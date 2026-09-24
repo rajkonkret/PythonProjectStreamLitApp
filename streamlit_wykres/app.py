@@ -94,3 +94,33 @@ filtered_df = filtered_df[
 filtered_df = filtered_df[
     filtered_df["sprzedaz"] >= minimalna_sprzedaz
 ]
+
+st.subheader("Podsumowanie")
+
+col1, col2, col3 = st.columns(3)
+
+
+with col1:
+    st.metric(
+        "Łączna sprzedaż",
+        f"{filtered_df['sprzedaz'].sum():,.0f} zł"
+    )
+
+
+with col2:
+    st.metric(
+        "Średnia sprzedaż",
+        f"{filtered_df['sprzedaz'].mean():,.0f} zł"
+        if len(filtered_df) > 0
+        else "0 zł"
+    )
+
+
+with col3:
+    st.metric(
+        "Liczba transakcji",
+        len(filtered_df)
+    )
+
+
+st.divider()
