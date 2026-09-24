@@ -70,24 +70,26 @@ with st.expander("Kliknij aby rozwinąć"):
         if "krok" not in st.session_state:
             st.session_state.krok = 1
 
+        if "user_name" not in st.session_state:
+            st.session_state.user_name = ""
+
         if st.session_state.krok == 1:
             # if st.button("Przejdz do kroku 2"):
             #     st.session_state.krok = 2
             #     st.rerun()
-            if st.session_state.krok == 1:
-                st.button("Przejdz do kroku 2", on_click=set_step, args=(2,))
+            st.button("Przejdz do kroku 2", on_click=set_step, args=(2,))
 
-        if st.session_state.krok == 2:
+        elif st.session_state.krok == 2:
             imie_poprawne = st.text_input("Twoje imię (w sesji):", key="user_name")
-            if st.button("Zapisz i zakończ"):
-                st.session_state.krok = 3
-                st.rerun()
+            # if st.button("Zapisz i zakończ"):
+            #     st.session_state.krok = 3
+            #     st.rerun()
+            st.button("Zapisz i zakończ", on_click=set_step, args=(3,))
 
-        if "user_name" not in st.session_state:
-            st.session_state.user_name = ""
 
-        if st.session_state.krok == 3:
+        elif st.session_state.krok == 3:
             st.write(f"Cześć **{st.session_state.user_name}**!")
-            if st.button("Zacznij od nowa"):
-                st.session_state.krok = 1
-                st.rerun()
+            # if st.button("Zacznij od nowa"):
+            #     st.session_state.krok = 1
+            #     st.rerun()
+            st.button("Zacznij od nowa", on_click=set_step, args=(1,))
