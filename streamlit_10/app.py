@@ -48,3 +48,17 @@ with col_ctrl2:
 
 st.divider()
 
+col_left, col_right = st.columns(2)
+
+with col_left:
+    st.subheader("Bez Cache (zwykłą funkcja)")
+    st.caption("Blokuje aplikację na 2 sekundy")
+
+    start_time = time.time()
+    with st.spinner("Pobieranie danych (bez cache)"):
+        dane_bez = pobierz_dane_bez_cache(wybrana_kategoria)
+    czas_bez = time.time() - start_time
+
+    st.metric(label="Czas wykonania zapytania:", value=f"{czas_bez:.2f}", delta=f"{czas_bez:.2f}", delta_color="inverse")
+    st.dataframe(dane_bez, hide_index=True)
+    st.error("Kazde zapytanie 2s")
