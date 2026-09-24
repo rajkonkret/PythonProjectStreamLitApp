@@ -12,6 +12,7 @@ def zegar():
 
 @st.fragment
 def kalkulator():
+    # slider nie jest dozwolony we frgment w nowych wersjach
     # sztuki = st.slider("Sztuki", 1, 20, 3)
     st.metric("Wartość", f"{3 * 12} zł")
 
