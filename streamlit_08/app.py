@@ -45,3 +45,11 @@ with st.expander("Kliknij aby rozwinąć"):
     st.write("Formularz")
 
     col_a, col_b = st.columns(2)
+
+    with col_a:
+        st.write("Przycisk w przycisku")
+        if st.button("Krok 1"):
+            imie = st.text_input("Twoje imię")
+            if st.button('Zatwierdź'):
+                st.write(f"Cześć {imie}!")
+        st.caption("Po wpisaniu imienia formularz zniknie")
