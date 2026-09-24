@@ -67,3 +67,18 @@ with st.sidebar:
     )
 
     st.caption("Wszystkie kwoty w PLN")
+
+if len(dates) != 2:
+    st.info("Wybierz datę początkową i końcową")
+    st.stop()
+
+filtered = filter_sales(df, chosen, *dates)
+
+if filtered.empty:
+    st.info("Brak sprzedaży dla wybranych filtrów.")
+    st.stop()
+
+revenue = filtered['wartosc_sprzedazy'].sum()
+units = int(filtered['liczba_sztuk'].sum())
+ranking = filtered.groupby('produkt')['liczba_sztuk'].sum().sort_values(ascending=False)
+bestsellers = ranking[ranking == ranking.max()]
