@@ -1,5 +1,5 @@
 import streamlit as st
-
+# pip install "streamlit[auth]"
 st.set_page_config(
     page_title="Portal firmowy",
     layout="wide"
@@ -8,6 +8,7 @@ st.set_page_config(
 # --------------------------------------------------
 # LOGOWANIE
 # --------------------------------------------------
+st.write(st.secrets.auth.redirect_uri)
 
 if not st.user.is_logged_in:
     st.title("🔐 Portal firmowy")
