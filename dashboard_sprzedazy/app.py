@@ -24,3 +24,22 @@ with st.sidebar:
         sample.read_bytes(),
         "sprzedaz_przyklad.csv",
         "text/csv")
+
+if source == "Własny plik CSV" and uploaded is None:
+    st.info("Dodaj plik CSV w panelu po lewej stronie")
+    st.code('data,produkt,kategoria,liczba_sztuk,cena_jednostkowa\n2026-01-10,Klawiatura,Elektronika,2,149.98',
+            language="text")
+    st.stop()
+
+try:
+    df, invalid = load_sales(uploaded if uploaded is not None else sample)
+except ValueError as exc:
+    st.error(str(exc))
+    st.stop()
+
+if invalid:
+    st.warning(f"Pominięto {invalid} niepoprawnych wierszy")
+
+if df.empty():
+    st.error("Brak danych")
+    st.stop()
