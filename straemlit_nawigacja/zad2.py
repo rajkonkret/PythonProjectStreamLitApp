@@ -21,3 +21,13 @@ def strona_raport():
 
     st.dataframe(dane, hide_index=True)
     st.bar_chart(dane.set_index("Produkt"))
+
+
+def strona_ustawien():
+    st.title("Ustawienia")
+
+    waluta = st.selectbox("Waluta:", ["PLN", "EUR", "USD"])
+    tryb_ciemny = st.toggle("Wymuś tryb ciemny", value=False)
+
+    if st.button("Zapisz ustawienai"):
+        st.success(F"Zapisano! Wybrana waluta: {waluta}")
