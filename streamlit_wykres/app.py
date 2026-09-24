@@ -156,3 +156,10 @@ with col2:
     st.bar_chart(
         sprzedaz_produkty
     )
+
+    st.subheader("📋 Dane po zastosowaniu filtrów")
+    
+    st.dataframe(
+        filtered_df,
+        use_container_width=True
+    )
