@@ -38,3 +38,10 @@ with col2:
     )
 
 st.divider()
+
+st.subheader("Formularz wieloetapowy")
+
+with st.expander("Kliknij aby rozwinąć"):
+    st.write("Formularz")
+
+    col_a, col_b = st.columns(2)
