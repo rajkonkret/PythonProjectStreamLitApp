@@ -37,8 +37,9 @@ with col2:
     if "dobry_licznik" not in st.session_state:
         st.session_state.dobry_licznik = 0
 
-    if st.button("Zwiększ (sesion_state)", key="btn_good"):
-        st.session_state.dobry_licznik += 1
+    # if st.button("Zwiększ (sesion_state)", key="btn_good"):
+    #     st.session_state.dobry_licznik += 1
+    st.button("Zwiększ (sesion_state)", key="btn_good", on_click=inc_counter)
 
     st.metric(label="Wartość licznika w sesji", value=st.session_state.dobry_licznik)
 
