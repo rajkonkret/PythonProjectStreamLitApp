@@ -89,3 +89,23 @@ b.metric("Sprzedane sztuki", f"{units:,.2f}".replace(",", " "))
 c.metric("Bestseller", str(bestsellers.index[0]))
 if len(bestsellers) > 1:
     st.caption("Remis: " + ', '.join(bestsellers.index))
+
+eft, right = st.columns(2)
+with left:
+    st.subheader('Sprzedaż w miesiącach')
+    monthly = filtered.set_index('data')['wartosc_sprzedazy'].resample('MS').sum()
+    months = pd.date_range(pd.Timestamp(dates[0]).replace(day=1), pd.Timestamp(dates[1]).replace(day=1), freq='MS')
+    monthly = monthly.reindex(months, fill_value=0)
+    monthly.index.name = 'Miesiąc'
+    monthly.name = 'Sprzedaż (PLN)'
+    st.line_chart(monthly)
+with right:
+    st.subheader('Sprzedaż według kategorii')
+    category_sales = filtered.groupby('kategoria')['wartosc_sprzedazy'].sum().rename('Sprzedaż (PLN)')
+    st.bar_chart(category_sales)
+st.subheader('Dane po filtrowaniu')
+st.caption(f'Liczba pozycji sprzedaży: {len(filtered)}')
+st.dataframe(filtered.sort_values('data'), hide_index=True)
+st.download_button('Pobierz przefiltrowane dane CSV', export_csv(filtered.sort_values('data')), 'sprzedaz_filtrowana.csv', 'text/csv')
+with st.expander('Jak przygotować własny CSV?'):
+    st.markdown('Wymagane kolumny: `data`, `produkt`, `kategoria`, `liczba_sztuk`, `cena_jednostkowa`. Daty: `RRRR-MM-DD`. Kodowanie: UTF-8. Separator: przecinek lub średnik. Dla cen z przecinkiem użyj separatora średnik. Jeden wiersz to jedna pozycja sprzedaży. Zwroty z wartościami ujemnymi nie są obsługiwane.')
